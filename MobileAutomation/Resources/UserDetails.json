@@ -1,0 +1,9 @@
+{
+	"userDetails": [
+		{
+			"userType": "LoggedInUser",
+			"emailID": "imeashiq@gmail.com",
+			"password": "Test@123"
+		}
+	]
+}

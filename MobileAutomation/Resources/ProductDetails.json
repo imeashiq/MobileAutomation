@@ -1,0 +1,12 @@
+{
+	"productDetails": [
+		{
+			"productType": "searchTV",
+			"searchTerm": "65-inch TV"
+		},
+		{
+			"productType": "searchToys",
+			"searchTerm": "Toys"
+		}
+	]
+}

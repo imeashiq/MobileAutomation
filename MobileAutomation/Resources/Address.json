@@ -1,0 +1,13 @@
+{
+	"addressDetails": [
+		{
+			"addressType": "FremontAddress",
+			"name": "Mohamed Ashik",
+			"street": "36543 San Pedro Dr",
+			"city": "California",
+			"state": "CA",
+			"zip": "94536",
+			"phone": "4143249243"
+		}
+	]
+}

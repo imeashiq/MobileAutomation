@@ -1,0 +1,11 @@
+{
+	"paymentDetails": [
+		{
+			"paymentType": "Visa",
+			"name": "Mohamed Ashik",
+			"cardNumber": "4445222299990007",
+			"expMonth": "06",
+			"expYear": "2021"
+		}
+	]
+}
