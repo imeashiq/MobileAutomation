@@ -10,6 +10,7 @@ import java.util.Properties;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
 import io.appium.java_client.android.AndroidDriver;
@@ -86,6 +87,14 @@ public class DriverBaseClass {
 		this.deviceID = reader.getProperty("DeviceID");
 		this.deviceName = reader.getProperty("DeviceName");
 		this.platformVersion = reader.getProperty("PlatformVersion");
+	}
+	
+	/*
+	 * Close the driver after the completion of a test scenario
+	 */
+	@AfterMethod
+	public void closeDriver() {
+		getDriver().close();
 	}
 
 }
