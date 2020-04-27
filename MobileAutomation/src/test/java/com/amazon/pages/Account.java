@@ -6,6 +6,8 @@ import org.testng.Assert;
 import com.reusable.components.TestDataReader;
 import com.reusable.components.WebElementBaseClass;
 
+import io.qameta.allure.Step;
+
 public class Account extends WebElementBaseClass {
 
 	TestDataReader testData;
@@ -26,6 +28,7 @@ public class Account extends WebElementBaseClass {
 	/*
 	 * SignIn an account with given user type.
 	 */
+	@Step("SignIn an account with given user type")
 	public void loginAccount(WebDriver driver, String userType) {
 		String[] userDetails = testData.userDataReader(userType);
 		String email = userDetails[0];
@@ -40,6 +43,7 @@ public class Account extends WebElementBaseClass {
 	/*
 	 * Navigate to homepage from account page
 	 */
+	@Step("Navigate to homepage from account page")
 	public void navigateToHomePage(WebDriver driver) {
 		getElement(driver, amazonLogo, 10).click();
 	}

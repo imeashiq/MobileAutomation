@@ -11,6 +11,8 @@ import com.amazon.pages.PDP;
 import com.amazon.pages.PMP;
 import com.reusable.components.DriverBaseClass;
 
+import io.qameta.allure.Feature;
+
 public class Checkout_Place_an_order_by_searching_a_product extends DriverBaseClass {
 
 	// TestData used for this test
@@ -21,6 +23,7 @@ public class Checkout_Place_an_order_by_searching_a_product extends DriverBaseCl
 	WebDriver driver;
 
 	@Test(testName = "Search for a given product and place an order")
+	@Feature("Checkout")
 	public void testMethod() {
 
 		// Get the driver instance from the BaseWebDriver class

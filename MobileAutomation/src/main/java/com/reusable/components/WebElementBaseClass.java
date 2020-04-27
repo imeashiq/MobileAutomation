@@ -12,6 +12,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 import io.appium.java_client.TouchAction;
 import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.android.nativekey.AndroidKey;
+import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
@@ -119,9 +121,12 @@ public class WebElementBaseClass {
 		touchAction.press(PointOption.point(startx, starty)).waitAction(WaitOptions.waitOptions(Duration.ofMillis(0)))
 				.moveTo(PointOption.point(endx, endy)).release().perform();
 	}
-	
+
 	public String replaceDynamicLocator(String element, String replacementValue) {
 		return element.replace("<<<>>>", replacementValue);
 	}
 
+	public void pressKeyEvent(WebDriver driver, AndroidKey key) {
+		((AndroidDriver) driver).pressKey(new KeyEvent(key));
+	}
 }

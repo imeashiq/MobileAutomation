@@ -6,14 +6,13 @@ import org.testng.Assert;
 import com.reusable.components.TestDataReader;
 import com.reusable.components.WebElementBaseClass;
 
-import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
+import io.qameta.allure.Step;
 
 public class HomePage extends WebElementBaseClass {
 	TestDataReader testData;
-	
-	//Contructor to create object for TestData Reader
+
+	// Contructor to create object for TestData Reader
 	public HomePage() {
 		testData = new TestDataReader();
 	}
@@ -28,25 +27,28 @@ public class HomePage extends WebElementBaseClass {
 	/*
 	 * To open HamburgerMenu from HomePage
 	 */
+	@Step("Open Hamburger Menu")
 	public void openHamburgerMenu(WebDriver driver) {
 		getElement(driver, openHamburgermenu, 15).click();
 		Assert.assertTrue(getElement(driver, closeHamburgermenu, 15).isDisplayed(), "Hamburger Menu should be opened.");
 	}
-	
+
 	/*
 	 * Navigate to account from HamburgerMenu
 	 */
+	@Step("Navigate to account from Hamburger menu")
 	public void navigateToAccount(WebDriver driver) {
 		getElement(driver, yourAccount, 10).click();
 		Assert.assertTrue(getElement(driver, welcomeTitle, 15).isDisplayed(), "Account page should be opened.");
 	}
-	
+
 	/*
 	 * Search for a product with given keyword
 	 */
+	@Step("Search for product with keyword")
 	public void searchProduct(WebDriver driver, String productType) {
 		String searchKeyword = testData.productDataReader(productType);
 		getElement(driver, searchBar, 10).sendKeys(searchKeyword);
-		((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.ENTER));
+		pressKeyEvent(driver, AndroidKey.ENTER);
 	}
 }

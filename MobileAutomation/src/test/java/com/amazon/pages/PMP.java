@@ -5,6 +5,8 @@ import org.testng.Assert;
 
 import com.reusable.components.WebElementBaseClass;
 
+import io.qameta.allure.Step;
+
 public class PMP extends WebElementBaseClass{
 	
 	// Locators used in this page
@@ -14,6 +16,7 @@ public class PMP extends WebElementBaseClass{
 	/*
 	 * Scroll and select a product from the search result dynamically
 	 */
+	@Step("Scroll and select a product from the search result")
 	public void selectProductFromSearchResult(WebDriver driver, int itemToBeSelected) {
 		int intanceNumber = 39 + (itemToBeSelected * 8);
 		scrollAndSearchElement(driver, replaceDynamicLocator(selectProductPMP, String.valueOf(intanceNumber)), 10, Direction.UP, 5).click();

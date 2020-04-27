@@ -5,6 +5,8 @@ import org.testng.Assert;
 
 import com.reusable.components.WebElementBaseClass;
 
+import io.qameta.allure.Step;
+
 public class Cart extends WebElementBaseClass {
 
 	public static String checkoutBtn = "ID:a-autoid-1";
@@ -13,6 +15,7 @@ public class Cart extends WebElementBaseClass {
 	/*
 	 * Verify product and price details
 	 */
+	@Step("Verify product and price details in cart page")
 	public void verifyProductDetails(WebDriver driver, String[] productDetails) {
 		String productTitle = productDetails[0];
 		String productPrice = productDetails[1];
@@ -25,6 +28,7 @@ public class Cart extends WebElementBaseClass {
 	/*
 	 * Method to click and proceed to checkout
 	 */
+	@Step("Click checkout button in cart page.")
 	public void proceedToCheckout(WebDriver driver) {
 		getElement(driver, checkoutBtn, 15).click();
 	}

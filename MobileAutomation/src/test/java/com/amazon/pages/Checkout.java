@@ -7,10 +7,12 @@ import org.testng.Assert;
 import com.reusable.components.TestDataReader;
 import com.reusable.components.WebElementBaseClass;
 
+import io.qameta.allure.Step;
+
 public class Checkout extends WebElementBaseClass {
 	TestDataReader testData;
 
-	// Contructor to create object for TestData Reader
+	// Constructor to create object for TestData Reader
 	public Checkout() {
 		testData = new TestDataReader();
 	}
@@ -40,6 +42,7 @@ public class Checkout extends WebElementBaseClass {
 	/*
 	 * Method to enter the shipping Address details in checkout page
 	 */
+	@Step("Enter the shipping Address details in checkout page")
 	public void enterAddress(WebDriver driver, String addressType) {
 		String address[] = testData.addressDataReader(addressType);
 		String firstName = address[0];
@@ -60,6 +63,7 @@ public class Checkout extends WebElementBaseClass {
 	/*
 	 * Method to select standard shipping
 	 */
+	@Step("Select standard shipping in checkout page")
 	public void selectStandardShipping(WebDriver driver) {
 		getElement(driver, standardShipping, 15).click();
 		scrollAndSearchElement(driver, continueBtn, 10, Direction.UP, 5).click();
@@ -68,6 +72,7 @@ public class Checkout extends WebElementBaseClass {
 	/*
 	 * Method to enter payment details to order
 	 */
+	@Step("Enter payment details in checkout page")
 	public void enterPayment(WebDriver driver, String paymentType) {
 		String[] paymentDetails = testData.paymentDataReader(paymentType);
 		String name = paymentDetails[0];
@@ -88,6 +93,7 @@ public class Checkout extends WebElementBaseClass {
 	/*
 	 * Method to verify product details in Checkout page
 	 */
+	@Step("Verify product details in checkout page")
 	public void verifyProductDetails(WebDriver driver, String[] productDetails) {
 		String productTitle = productDetails[0];
 		String productPrice = productDetails[1];
@@ -103,6 +109,7 @@ public class Checkout extends WebElementBaseClass {
 	/*
 	 * Method to place an order
 	 */
+	@Step("Place an order")
 	public void placeOrder(WebDriver driver) {
 		scrollAndSearchElement(driver, placeOrder, 15, Direction.UP, 15).click();
 	}

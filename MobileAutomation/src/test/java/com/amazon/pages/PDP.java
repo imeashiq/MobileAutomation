@@ -5,6 +5,8 @@ import org.testng.Assert;
 
 import com.reusable.components.WebElementBaseClass;
 
+import io.qameta.allure.Step;
+
 public class PDP extends WebElementBaseClass {
 
 	public static String productTitle = "ID:title_feature_div";
@@ -16,6 +18,7 @@ public class PDP extends WebElementBaseClass {
 	/*
 	 * Add the product to cart
 	 */
+	@Step("Add the product to cart")
 	public String[] addItemToCart(WebDriver driver) {
 		String strProductTitle = getElement(driver, productTitle, 15).getText();
 		String strPrice = scrollAndSearchElement(driver, productPrice, 10, Direction.UP, 5).getText();
@@ -28,6 +31,7 @@ public class PDP extends WebElementBaseClass {
 	/*
 	 * Navigate to cart
 	 */
+	@Step("Navigate to cart from PDP")
 	public void navigateToCart(WebDriver driver) {
 		getElement(driver, cartIcon, 10).click();
 	}
