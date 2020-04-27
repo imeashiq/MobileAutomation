@@ -1,5 +1,6 @@
 package com.reusable.components;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -8,8 +9,12 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.Properties;
 
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 
@@ -46,7 +51,7 @@ public class DriverBaseClass {
 
 			// Creating driver with above capabilities using default Appium server
 			driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capability);
-			
+
 			setDriver(driver);
 		} catch (MalformedURLException e) {
 			// TODO Auto-generated catch block
@@ -88,12 +93,23 @@ public class DriverBaseClass {
 		this.deviceName = reader.getProperty("DeviceName");
 		this.platformVersion = reader.getProperty("PlatformVersion");
 	}
-	
+
 	/*
-	 * Close the driver after the completion of a test scenario
+	 * Close the driver after the completion of a test scenario and take-screenshot
+	 * on failure
 	 */
 	@AfterMethod
-	public void closeDriver() {
+	public void closeDriver(ITestResult result) {
+		if (ITestResult.FAILURE == result.getStatus()) {
+			try {
+				// Call method to capture screenshot
+				File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+				// Move the file to the FailureScreenshots folder
+				FileUtils.copyFile(src, new File("FailureScreenshots\\" + result.getClass() + ".png"));
+			} catch (Exception e) {
+				System.out.println("Exception while taking screenshot " + e.getMessage());
+			}
+		}
 		getDriver().close();
 	}
 

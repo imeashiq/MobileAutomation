@@ -1,5 +1,6 @@
 package com.amazon.testScenarios.checkout;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
 import com.amazon.pages.Account;
@@ -17,9 +18,14 @@ public class Checkout_Place_an_order_by_searching_a_product extends DriverBaseCl
 	String userType = "LoggedInUser";
 	String paymentType = "Visa";
 	String addressType = "FremontAddress";
+	WebDriver driver;
 
 	@Test(testName = "Search for a given product and place an order")
 	public void testMethod() {
+
+		// Get the driver instance from the BaseWebDriver class
+		driver = getDriver();
+
 		// Create object that are being used in this test scenario
 		HomePage homePage = new HomePage();
 		Account account = new Account();
@@ -29,32 +35,32 @@ public class Checkout_Place_an_order_by_searching_a_product extends DriverBaseCl
 		Checkout checkout = new Checkout();
 
 		// Open HamburgerMenu
-		homePage.openHamburgerMenu(getDriver());
+		homePage.openHamburgerMenu(driver);
 		// Navigate to Account
-		homePage.navigateToAccount(getDriver());
+		homePage.navigateToAccount(driver);
 		// Login with emailID
-		account.loginAccount(getDriver(), userType);
+		account.loginAccount(driver, userType);
 		// Navigate back to home
-		account.navigateToHomePage(getDriver());
+		account.navigateToHomePage(driver);
 		// Search for product with keyword
-		homePage.searchProduct(getDriver(), searchKeyword);
+		homePage.searchProduct(driver, searchKeyword);
 		// Select a product from search result
-		pmp.selectProductFromSearchResult(getDriver(), 3);
+		pmp.selectProductFromSearchResult(driver, 3);
 		// Get item details and add it to cart
-		String[] productDetails = pdp.addItemToCart(getDriver());
+		String[] productDetails = pdp.addItemToCart(driver);
 		// Navigate to cart & verify the details
-		pdp.navigateToCart(getDriver());
-		cart.verifyProductDetails(getDriver(), productDetails);
+		pdp.navigateToCart(driver);
+		cart.verifyProductDetails(driver, productDetails);
 		// Proceed to checkout
-		cart.proceedToCheckout(getDriver());
+		cart.proceedToCheckout(driver);
 		// Enter the shipping Address
-		checkout.enterAddress(getDriver(), addressType);
+		checkout.enterAddress(driver, addressType);
 		// Select default shipping method
-		checkout.selectStandardShipping(getDriver());
+		checkout.selectStandardShipping(driver);
 		// Enter the payment details
-		checkout.enterPayment(getDriver(), paymentType);
+		checkout.enterPayment(driver, paymentType);
 		// Verify product details in checkout and place order
-		checkout.verifyProductDetails(getDriver(), productDetails);
-		checkout.placeOrder(getDriver());
+		checkout.verifyProductDetails(driver, productDetails);
+		checkout.placeOrder(driver);
 	}
 }

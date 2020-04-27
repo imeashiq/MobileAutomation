@@ -1,6 +1,7 @@
 package com.amazon.pages;
 
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 
 import com.reusable.components.TestDataReader;
@@ -90,14 +91,13 @@ public class Checkout extends WebElementBaseClass {
 	public void verifyProductDetails(WebDriver driver, String[] productDetails) {
 		String productTitle = productDetails[0];
 		String productPrice = productDetails[1];
-		Assert.assertTrue(
-				scrollAndSearchElement(driver, replaceDynamicLocator(genericXpath, productTitle), 15, Direction.UP, 10)
-						.isDisplayed(),
-				"Product Title mismatches");
-		Assert.assertTrue(
-				scrollAndSearchElement(driver, replaceDynamicLocator(genericXpath, productPrice), 5, Direction.UP, 2)
-						.isDisplayed(),
-				"Product Price mismatches");
+		WebElement productDetail = scrollAndSearchElement(driver, replaceDynamicLocator(genericXpath, productTitle), 15,
+				Direction.UP, 10);
+		Assert.assertTrue(productDetail.isDisplayed(), "Product Title mismatches");
+
+		productDetail = scrollAndSearchElement(driver, replaceDynamicLocator(genericXpath, productPrice), 5,
+				Direction.UP, 2);
+		Assert.assertTrue(productDetail.isDisplayed(), "Product Price mismatches");
 	}
 
 	/*
