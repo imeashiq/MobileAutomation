@@ -13,6 +13,7 @@ import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -22,11 +23,13 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 
 public class DriverBaseClass {
-	private ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();;
+	private ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
 	WebDriver driver;
 	String deviceName;
 	String deviceID;
 	String platformVersion;
+	static String appPackage;
+	static String appActivity;
 
 	/**
 	 * Method is to load details from config property File And to create a Android
@@ -40,14 +43,14 @@ public class DriverBaseClass {
 			// Capabilities to create Android Driver
 			DesiredCapabilities capability = new DesiredCapabilities();
 			capability.setCapability(MobileCapabilityType.DEVICE_NAME, deviceName);
-			capability.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator1");
+			capability.setCapability(MobileCapabilityType.AUTOMATION_NAME, "UiAutomator2");
 			capability.setCapability(MobileCapabilityType.PLATFORM_NAME, "Android");
 			capability.setCapability(MobileCapabilityType.PLATFORM_VERSION, platformVersion);
 			capability.setCapability(MobileCapabilityType.UDID, deviceID);
 			capability.setCapability("noReset", true);
 			capability.setCapability(MobileCapabilityType.NEW_COMMAND_TIMEOUT, 600);
-			capability.setCapability("appActivity", "com.amazon.mShop.splashscreen.StartupActivity");
-			capability.setCapability("appPackage", "com.amazon.mShop.android.shopping");
+			capability.setCapability("appActivity", appActivity);
+			capability.setCapability("appPackage", appPackage);
 
 			// Creating driver with above capabilities using default Appium server
 			driver = new AndroidDriver(new URL("http://0.0.0.0:4723/wd/hub"), capability);
@@ -92,6 +95,8 @@ public class DriverBaseClass {
 		this.deviceID = reader.getProperty("DeviceID");
 		this.deviceName = reader.getProperty("DeviceName");
 		this.platformVersion = reader.getProperty("PlatformVersion");
+		appPackage = reader.getProperty("AppPackage");
+		appActivity= reader.getProperty("AppActivity");
 	}
 
 	/*

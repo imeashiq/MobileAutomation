@@ -11,10 +11,12 @@ import io.qameta.allure.Step;
 public class Account extends WebElementBaseClass {
 
 	TestDataReader testData;
+	WebDriver driver;
 
 	// Contructor to create object for TestData Reader
 	public Account() {
 		testData = new TestDataReader();
+		this.driver = super.getDriver();
 	}
 
 	// Locators used in this page
@@ -29,7 +31,7 @@ public class Account extends WebElementBaseClass {
 	 * SignIn an account with given user type.
 	 */
 	@Step("SignIn an account with given user type")
-	public void loginAccount(WebDriver driver, String userType) {
+	public void loginAccount(String userType) {
 		String[] userDetails = testData.userDataReader(userType);
 		String email = userDetails[0];
 		String password = userDetails[1];
@@ -44,7 +46,7 @@ public class Account extends WebElementBaseClass {
 	 * Navigate to homepage from account page
 	 */
 	@Step("Navigate to homepage from account page")
-	public void navigateToHomePage(WebDriver driver) {
+	public void navigateToHomePage() {
 		getElement(driver, amazonLogo, 10).click();
 	}
 }

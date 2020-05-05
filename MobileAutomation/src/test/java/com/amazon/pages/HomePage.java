@@ -11,10 +11,12 @@ import io.qameta.allure.Step;
 
 public class HomePage extends WebElementBaseClass {
 	TestDataReader testData;
-
-	// Contructor to create object for TestData Reader
+	WebDriver driver;
+	
+	// Contructor to create object for TestData Reader and get WebDriver
 	public HomePage() {
 		testData = new TestDataReader();
+		this.driver = super.getDriver();
 	}
 
 	// Locators used in this page
@@ -28,7 +30,7 @@ public class HomePage extends WebElementBaseClass {
 	 * To open HamburgerMenu from HomePage
 	 */
 	@Step("Open Hamburger Menu")
-	public void openHamburgerMenu(WebDriver driver) {
+	public void openHamburgerMenu() {
 		getElement(driver, openHamburgermenu, 15).click();
 		Assert.assertTrue(getElement(driver, closeHamburgermenu, 15).isDisplayed(), "Hamburger Menu should be opened.");
 	}
@@ -37,7 +39,7 @@ public class HomePage extends WebElementBaseClass {
 	 * Navigate to account from HamburgerMenu
 	 */
 	@Step("Navigate to account from Hamburger menu")
-	public void navigateToAccount(WebDriver driver) {
+	public void navigateToAccount() {
 		getElement(driver, yourAccount, 10).click();
 		Assert.assertTrue(getElement(driver, welcomeTitle, 15).isDisplayed(), "Account page should be opened.");
 	}
@@ -46,7 +48,7 @@ public class HomePage extends WebElementBaseClass {
 	 * Search for a product with given keyword
 	 */
 	@Step("Search for product with keyword")
-	public void searchProduct(WebDriver driver, String productType) {
+	public void searchProduct(String productType) {
 		String searchKeyword = testData.productDataReader(productType);
 		getElement(driver, searchBar, 10).sendKeys(searchKeyword);
 		pressKeyEvent(driver, AndroidKey.ENTER);
