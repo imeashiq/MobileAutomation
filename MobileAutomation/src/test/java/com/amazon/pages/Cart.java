@@ -17,9 +17,9 @@ public class Cart extends WebElementBaseClass {
 	public static String genericXpath = "XPATH://*[@text=<<<>>>]";
 
 	// Contructor to create object for TestData Reader and get WebDriver
-	public Cart() {
+	public Cart(WebDriver driver) {
 		testData = new TestDataReader();
-		this.driver = super.getDriver();
+		this.driver = driver;
 	}
 
 	/*

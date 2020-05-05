@@ -20,9 +20,9 @@ public class PDP extends WebElementBaseClass {
 	public static String checkoutBtn = "ID:huc-proceed-to-checkout-button";
 
 	// Contructor to create object for TestData Reader and get WebDriver
-	public PDP() {
+	public PDP(WebDriver driver) {
 		testData = new TestDataReader();
-		this.driver = super.getDriver();
+		this.driver = driver;
 	}
 
 	/*

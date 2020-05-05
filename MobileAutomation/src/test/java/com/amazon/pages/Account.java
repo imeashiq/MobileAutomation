@@ -14,9 +14,9 @@ public class Account extends WebElementBaseClass {
 	WebDriver driver;
 
 	// Contructor to create object for TestData Reader
-	public Account() {
+	public Account(WebDriver driver) {
 		testData = new TestDataReader();
-		this.driver = super.getDriver();
+		this.driver = driver;
 	}
 
 	// Locators used in this page

@@ -17,9 +17,9 @@ public class PMP extends WebElementBaseClass {
 	public static String productTitle = "ID:title_feature_div";
 
 	// Contructor to create object for TestData Reader and get WebDriver
-	public PMP() {
+	public PMP(WebDriver driver) {
 		testData = new TestDataReader();
-		this.driver = super.getDriver();
+		this.driver = driver;
 	}
 
 	/*

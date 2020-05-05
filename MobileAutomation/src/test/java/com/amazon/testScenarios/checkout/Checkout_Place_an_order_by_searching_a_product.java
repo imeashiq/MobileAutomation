@@ -1,5 +1,6 @@
 package com.amazon.testScenarios.checkout;
 
+import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
 import com.amazon.pages.Account;
@@ -23,14 +24,16 @@ public class Checkout_Place_an_order_by_searching_a_product extends DriverBaseCl
 	@Test(testName = "Search for a given product and place an order")
 	@Feature("Checkout")
 	public void testMethod() {
+		//Get WebDriver from BaseClass
+		WebDriver driver = getDriver();
 
 		// Create object that are being used in this test scenario
-		HomePage homePage = new HomePage();
-		Account account = new Account();
-		PMP pmp = new PMP();
-		PDP pdp = new PDP();
-		Cart cart = new Cart();
-		Checkout checkout = new Checkout();
+		HomePage homePage = new HomePage(driver);
+		Account account = new Account(driver);
+		PMP pmp = new PMP(driver);
+		PDP pdp = new PDP(driver);
+		Cart cart = new Cart(driver);
+		Checkout checkout = new Checkout(driver);
 
 		// Open HamburgerMenu
 		homePage.openHamburgerMenu();

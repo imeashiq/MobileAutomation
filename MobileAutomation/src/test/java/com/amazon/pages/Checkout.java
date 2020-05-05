@@ -14,9 +14,9 @@ public class Checkout extends WebElementBaseClass {
 	WebDriver driver;
 
 	// Contructor to create object for TestData Reader and get WebDriver
-	public Checkout() {
+	public Checkout(WebDriver driver) {
 		testData = new TestDataReader();
-		this.driver = super.getDriver();
+		this.driver = driver;
 	}
 
 	// Locators used in this page

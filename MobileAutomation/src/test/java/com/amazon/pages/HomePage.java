@@ -14,9 +14,9 @@ public class HomePage extends WebElementBaseClass {
 	WebDriver driver;
 	
 	// Contructor to create object for TestData Reader and get WebDriver
-	public HomePage() {
+	public HomePage(WebDriver driver) {
 		testData = new TestDataReader();
-		this.driver = super.getDriver();
+		this.driver = driver;
 	}
 
 	// Locators used in this page

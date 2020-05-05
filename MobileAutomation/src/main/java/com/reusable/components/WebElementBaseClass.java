@@ -17,7 +17,7 @@ import io.appium.java_client.android.nativekey.KeyEvent;
 import io.appium.java_client.touch.WaitOptions;
 import io.appium.java_client.touch.offset.PointOption;
 
-public class WebElementBaseClass extends DriverBaseClass{
+public class WebElementBaseClass {
 
 	public enum Direction {
 		UP, DOWN, LEFT, RIGHT
